@@ -1,0 +1,13 @@
+[Unit]
+Description=sdcounter
+After=network.target
+
+[Service]
+User=ahurley
+Group=www-data
+WorkingDirectory=/home/ahurley/sdcounter
+Environment="PATH=/home/ahurley/sdcounter/sdcounter/env/bin"
+ExecStart=/home/ahurley/sdcounter/sdcounter/bin/uwsgi --ini sdcounter.ini
+
+[Install]
+WantedBy=multi-user.target
