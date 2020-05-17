@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS public.rooms;
 
 CREATE TABLE public.rooms (
     id SERIAL PRIMARY KEY,
-    name character varying NOT NULL,
+    name character varying NOT NULL UNIQUE,
     count integer NOT NULL DEFAULT 0
 );
 
@@ -37,10 +37,8 @@ CREATE TRIGGER update_journal
     FOR EACH ROW
     EXECUTE PROCEDURE update_journal_record();
 
-COPY public.rooms (id, name, count) FROM stdin;
-1	kitchen	0
-2	office	0
-3	garage	0
-\.
+INSERT INTO rooms (name) VALUES ('kitchen');
+INSERT INTO rooms (name) VALUES ('office');
+INSERT INTO rooms (name) VALUES ('garage');
 
 
